@@ -218,7 +218,7 @@ def run_single_report(report, output_dir, credentials):
             f.write(results)
             
         print(f"  ✓ Success - Saved to {filepath}")
-        return True, filepath  # Return tuple of success status and result
+        return True, filepath  
             
     except Exception as e:
         print(f"  ✗ Error - {str(e)}")
