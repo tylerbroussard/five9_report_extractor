@@ -1,47 +1,47 @@
 name: Five9 Call Log Extraction
 run-name: ${{ github.actor }} is running Five9 extraction 📊
 on:
-schedule:
-# Run at 6 AM UTC every Monday (for weekly reports)
-- cron: '0 6 * * 1'
-workflow_dispatch: # Allows manual triggering from GitHub UI
-push: # Also trigger on push for testing
+  schedule:
+    # Run at 6 AM UTC every Monday (for weekly reports)
+    - cron: '0 6 * * 1'
+  workflow_dispatch:  # Allows manual triggering from GitHub UI
+  push:  # Also trigger on push for testing
 
 jobs:
-Extract-Call-Logs:
-runs-on: ubuntu-latest
-steps:
-- run: echo " The job was automatically triggered by a ${{ github.event_name }} event."
-- run: echo " This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-- run: echo " The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-
-- name: Check out repository code
-uses: actions/checkout@v4
-
-- run: echo " The ${{ github.repository }} repository has been cloned to the runner."
-- run: echo "🖥 The workflow is now ready to extract Five9 call logs."
-
-- name: List files in the repository
-run: |
-ls ${{ github.workspace }}
-
-- name: Set up Python
-uses: actions/setup-python@v4
-with:
-python-version: '3.10'
-
-- name: Install dependencies
-run: |
-python -m pip install --upgrade pip
-pip install -r requirements.txt
-
-- name: Run extraction script
-run: |
-python five9_extractor.py "${{ secrets.FIVE9_CREDENTIALS }}" \
---sftp-host "${{ secrets.SFTP_HOST }}" \
---sftp-port "${{ secrets.SFTP_PORT }}" \
---sftp-username "${{ secrets.SFTP_USERNAME }}" \
---sftp-password "${{ secrets.SFTP_PASSWORD }}" \
---sftp-path "${{ secrets.SFTP_PATH }}"
-
-- run: echo " This job's status is ${{ job.status }}." 
+  Extract-Call-Logs:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to extract Five9 call logs."
+      
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Run extraction script
+        run: |
+          python five9_extractor.py "${{ secrets.FIVE9_CREDENTIALS }}" \
+            --sftp-host "${{ secrets.SFTP_HOST }}" \
+            --sftp-port "${{ secrets.SFTP_PORT }}" \
+            --sftp-username "${{ secrets.SFTP_USERNAME }}" \
+            --sftp-password "${{ secrets.SFTP_PASSWORD }}" \
+            --sftp-path "${{ secrets.SFTP_PATH }}"
+      
+      - run: echo "🍏 This job's status is ${{ job.status }}."
