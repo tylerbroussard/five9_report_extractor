@@ -5,7 +5,7 @@ on:
     # Run at 6 AM UTC every Monday (for weekly reports)
     - cron: '0 6 * * 1'
   workflow_dispatch:  # Allows manual triggering from GitHub UI
-  push:  # Also trigger on push for testing
+  push:  
 
 jobs:
   Extract-Call-Logs:
