@@ -185,7 +185,7 @@ def run_single_report(report, output_dir, credentials):
         print(f"  Started at: {datetime.datetime.now().strftime('%H:%M:%S')}")
         print("  Executing report...")
         
-        # Run report - add debug logging
+        
         print("  Calling run_report API...")
         identifier = run_report(
             credentials,
