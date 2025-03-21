@@ -199,7 +199,7 @@ def run_single_report(report, output_dir, credentials):
         
         print("  Checking report status...")
         start_time = time.time()
-        timeout = 300  # 5 minutes timeout
+        timeout = 300  
         while check_report_status(credentials, identifier):
             elapsed = time.time() - start_time
             if elapsed > timeout:
