@@ -196,7 +196,7 @@ def run_single_report(report, output_dir, credentials):
         )
         print(f"  Got report identifier: {identifier}")
         
-        # Check status until complete - add timeout and logging
+        
         print("  Checking report status...")
         start_time = time.time()
         timeout = 300  # 5 minutes timeout
