@@ -2,7 +2,7 @@ name: Five9 Call Log Extraction
 run-name: ${{ github.actor }} is running Five9 extraction 📊
 on:
   schedule:
-    - cron: '39 9 * * *'
+    - cron: '30 15 * * *'
   workflow_dispatch: 
   push:  
 
