@@ -1,0 +1,45 @@
+name:
+ Five9 Call Log Extraction on:
+schedule:
+#
+ Run at 6 AM UTC every Monday (for weekly reports)
+-
+cron:
+'0
+ 6 * * 1'
+workflow_dispatch:
+#
+ Allows manual triggering from GitHub UI
+jobs:
+extract_and_upload:
+runs-on:
+ ubuntu-latest
+steps:
+-
+name:
+ Check out repository uses:
+ actions/checkout@v3 -
+name:
+ Set up Python uses:
+ actions/setup-python@v4
+with:
+python-version:
+'3.10'
+-
+name:
+ Install dependencies run:
+|
+python
+ -m pip install --upgrade pip pip
+ install -r requirements.txt
+-
+name:
+ Run extraction script run:
+|
+python
+ five9_extractor.py "${{ secrets.FIVE9_CREDENTIALS }}" \ --sftp-host
+ "${{ secrets.SFTP_HOST }}" \ --sftp-port
+ "${{ secrets.SFTP_PORT }}" \ --sftp-username
+ "${{ secrets.SFTP_USERNAME }}" \ --sftp-password
+ "${{ secrets.SFTP_PASSWORD }}" \ --sftp-path
+ "${{ secrets.SFTP_PATH }}" 
