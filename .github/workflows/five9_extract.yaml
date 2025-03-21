@@ -1,15 +1,11 @@
 name:
  Five9 Call Log Extraction on:
 schedule:
-#
- Run at 6 AM UTC every Monday (for weekly reports)
--
+
 cron:
 '0
  6 * * 1'
 workflow_dispatch:
-#
- Allows manual triggering from GitHub UI
 jobs:
 extract_and_upload:
 runs-on:
