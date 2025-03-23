@@ -11,7 +11,6 @@ import paramiko
 from pathlib import Path
 
 def get_date_ranges():
-    # Get current time in Eastern timezone
     today = datetime.datetime.now()
     
     # Calculate rolling 7-day window
