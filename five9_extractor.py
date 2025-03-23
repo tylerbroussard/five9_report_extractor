@@ -313,7 +313,7 @@ def run_reports(credentials, sftp_config=None):
     total_duration = (end_time - start_time).total_seconds()
     
     print("\n=== Final Summary ===")
-    print(f"Execution completed at: {end_time.strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"Execution completed time: {end_time.strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"Total duration: {total_duration:.1f} seconds")
     print(f"Total reports: {len(reports)}")
     print(f"Successful: {successful_reports}")
