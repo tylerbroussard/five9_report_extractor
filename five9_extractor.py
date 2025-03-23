@@ -13,7 +13,6 @@ from pathlib import Path
 def get_date_ranges():
     today = datetime.datetime.now()
     
-    # Calculate rolling 7-day window
     seven_days_ago = today - timedelta(days=7)
     
     # Calculate start of current week (Monday)
