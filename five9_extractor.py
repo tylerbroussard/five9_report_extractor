@@ -341,7 +341,6 @@ if __name__ == "__main__":
     
     args = parser.parse_args()
     
-    # Configure SFTP if all required parameters are provided
     sftp_config = None
     if args.sftp_host and args.sftp_username and args.sftp_password:
         sftp_config = {
