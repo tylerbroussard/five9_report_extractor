@@ -15,7 +15,6 @@ def get_date_ranges():
     
     seven_days_ago = today - timedelta(days=7)
     
-    # Calculate start of current week (Monday)
     start_of_week = today - timedelta(days=today.weekday())
     
     # Format dates in Five9's expected format (Eastern Time)
