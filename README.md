@@ -105,7 +105,3 @@ Both implementations offer the same core functionality:
 - More structured object-oriented approach
 - Stronger typing and error handling
 - Modern command line parsing with System.CommandLine
-
-## License
-
-[Include your license information here]
