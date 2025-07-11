@@ -1,4 +1,4 @@
-# Five9 Call Log Report Runner
+# Five9 Reports API
 
 A multi-language solution for automating the retrieval of Call Log reports from the Five9 API with optional SFTP uploading capabilities. This repository includes implementations in both Python and C#.
 
