@@ -1,107 +1,80 @@
 # Five9 Reports API
 
-A multi-language solution for automating the retrieval of Call Log reports from the Five9 API with optional SFTP uploading capabilities. This repository includes implementations in both Python and C#.
-
-## Features
+Python/C# solutions for automating the retrieval of eports from the Five9 API with optional SFTP uploading.
 
 - Run Five9 Call Log reports with configurable date ranges
-- Process and save reports as CSV files
+- Save reports as CSV files
 - Upload reports to SFTP servers (optional)
-- Detailed progress reporting and summary output
-- Clean error handling and timeout management
+- Timestamped file organization
 
-## Python Implementation
-
-### Requirements
-
-- Python 3.6+
-- Required packages:
-  - `requests`
-  - `paramiko`
-  - `argparse`
-
-### Installation
+## Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/five9-report-runner.git
-
-# Install dependencies
+git clone https://github.com/tylerbroussard/five9_reports_api.git
+cd five9_reports_api
 pip install requests paramiko
 ```
 
-### Usage
+## Usage
 
+Two versions are available:
+
+### Environment Variable Version (Recommended)
 ```bash
-python five9_report_runner.py "username@domain.com:password" [--sftp-host HOST] [--sftp-port PORT] [--sftp-username USERNAME] [--sftp-password PASSWORD] [--sftp-path PATH]
+python five9_reports_api_envvar.py
 ```
 
-## C# Implementation
-
-### Requirements
-
-- .NET 6.0 or higher
-- NuGet packages:
-  - System.CommandLine
-  - SSH.NET
-
-### Installation
-
+Set required environment variables:
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/five9-report-runner.git
+export FIVE9_USERNAME="your-username"
+export FIVE9_PASSWORD="your-password"
 
-# Restore NuGet packages
-dotnet restore
+# Optional SFTP configuration
+export SFTP_HOST="sftp.example.com"
+export SFTP_PORT="22"
+export SFTP_USERNAME="ftpuser"
+export SFTP_PASSWORD="ftppass"
+export SFTP_PATH="/reports/"
 
-# Build the solution
-dotnet build
+python five9_reports_api_envvar.py
 ```
 
-### Usage
-
+### Command Line Version
 ```bash
-Five9ReportRunner.exe "username@domain.com:password" [--sftp-host HOST] [--sftp-port PORT] [--sftp-username USERNAME] [--sftp-password PASSWORD] [--sftp-path PATH]
+python five9_api_reports_cl.py "username@domain.com:password" [OPTIONS]
 ```
 
-## Common Features
+#### Command Line Options
+- `--sftp-host` - SFTP server hostname
+- `--sftp-port` - SFTP server port  
+- `--sftp-username` - SFTP username
+- `--sftp-password` - SFTP password
+- `--sftp-path` - SFTP upload path
 
-Both implementations offer the same core functionality:
+#### Examples
 
-| Feature | Python | C# |
-|---------|--------|-----|
-| Five9 API Authentication | Basic Auth via requests | Basic Auth via HttpClient |
-| Report Execution | SOAP API | SOAP API |
-| XML Parsing | xml.etree.ElementTree | System.Xml.Linq (XDocument) |
-| SFTP Support | paramiko | SSH.NET |
-| Command Line Interface | argparse | System.CommandLine |
-| Async Operations | No (synchronous) | Yes (async/await) |
+Basic usage:
+```bash
+python five9_api_reports_cl.py "user@company.com:mypassword"
+```
 
-## Output
+With SFTP upload:
+```bash
+python five9_api_reports_cl.py "user@company.com:mypassword" \
+  --sftp-host sftp.example.com \
+  --sftp-username ftpuser \
+  --sftp-password ftppass \
+  --sftp-path /reports/
+```
 
-- Creates a timestamped directory for each run
-- Saves reports as CSV files with sanitized filenames
-- Provides detailed console output with progress and error reporting
-- Displays summary statistics upon completion
+## Default Config
 
-## Default Behavior
+- **Report Type**: Call Log report from "Shared Reports" folder
+- **Date Range**: Previous 7 days
+- **Timeout**: 300 seconds
+- **Output**: Timestamped CSV files
 
-- The application retrieves the Call Log report from the "Shared Reports" folder
-- Default date range is the previous 7 days
-- Timeout for report execution is set to 300 seconds (5 minutes)
-- Report files include timestamps to prevent overwriting
+## Requirements
 
-## Implementation Notes
-
-### Python Version
-
-- Uses synchronous HTTP requests
-- Simple command line interface with argparse
-- Lightweight implementation with minimal dependencies
-
-### C# Version
-
-- Uses asynchronous programming with async/await
-- More structured object-oriented approach
-- Stronger typing and error handling
-- Modern command line parsing with System.CommandLine
+- Python 3.6+
+- Five9 account with API access
