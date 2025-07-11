@@ -19,7 +19,7 @@ pip install requests paramiko
 
 Two versions are available:
 
-### Environment Variable Version (Recommended)
+### Environment Variable Version
 ```bash
 python five9_reports_api_envvar.py
 ```
